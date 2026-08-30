@@ -5,11 +5,18 @@
   --foreground: #171717;
 }
 
+@font-face{
+  font-family: Salma Pro;
+  font-style: normal;
+  src: url("assets/fonts/SalmaproMedium-yw9ad.otf") format("opentype")
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-salma: "Salma Pro", normal;
 }
 
 @media (prefers-color-scheme: dark) {
