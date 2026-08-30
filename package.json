@@ -36,6 +36,10 @@
     "unrs-resolver"
   ],
   "trustedDependencies": [
+    "@prisma/engines",
+    "better-sqlite3",
+    "esbuild",
+    "prisma",
     "sharp",
     "unrs-resolver"
   ]
