@@ -1,7 +1,4 @@
-import Image from "next/image";
 import { Months } from "./enums";
-import { prisma } from "@/lib/prisma";
-import { Note, User } from "@/generated/prisma/client";
 import NoteList from "./components/NoteList";
 import { getUserWithNotes, UserWithNotes } from "@/actions/user-actions";
 
