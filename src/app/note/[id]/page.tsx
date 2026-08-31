@@ -1,5 +1,4 @@
 import NoteView from "@/app/components/NoteView"
-import { Note } from "@/generated/prisma/client"
 import { getNoteById } from "@/actions/notes/queries"
 
 
