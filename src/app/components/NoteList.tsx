@@ -7,9 +7,10 @@ export function NoteList({userNotes, user} : {userNotes: Note[]; user: string}) 
 
   return(
     <div className="flex flex-col items-start py-4 px-1 gap-2 w-full ">
-      {userNotes.map((note, _) => (
+      {userNotes.map((note, i) => (
       <Link href={`note/${note.id}`}
-        className="flex w-full h-full">
+        className="flex w-full h-full"
+        key={i}>
         <div className="flex flex-row w-full h-fit items-center text-nowrap gap-2 p-2 justify-between border-2 border-foreground transition duration-150 hover:-translate-x-1">
           <div className="flex gap-4 items-center">
             <Text>{note.title}</Text>
