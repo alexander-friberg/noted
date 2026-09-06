@@ -1,10 +1,9 @@
-import SpinnerIcon from "../../assets/icons/Spin.svg"
-import Image from "next/image"
+import SpinnerIcon from "../../assets/icons/Dots.svg"
 
-export default function Spinner({className} : {
-  className?: string
+export default function Spinner({scale} : {
+  scale?: string
 }) {
   return (
-    <Image src={SpinnerIcon} alt="Loading" className={`animate-spin ${className}`}/>
+    <SpinnerIcon className={`animate-spin text-foreground/60 ${scale}`}/>
   )
 }
