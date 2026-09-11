@@ -10,8 +10,7 @@ export function useMenuContexts(): MenuContext[] {
     {
       name: "New",
       action: () => {
-        resetNewNoteId()
-        router.push("/note/new")
+        router.push("/note")
       },
     },
     {

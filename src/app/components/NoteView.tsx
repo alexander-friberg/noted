@@ -1,21 +1,20 @@
-"use client"
+"use server"
 
 import { Note } from "@/generated/prisma/client";
-import { createDraftNote } from "@/lib/notes";
 import NoteEditor from "./NoteEditor";
-import { useNewNoteId } from "@/hooks/useNewNoteId";
+import { createNoteAsync } from "@/actions/notes/queries";
+import { redirect } from "next/navigation";
 
-export default function NoteView({ note, isNewNote }: { note: Note | null, isNewNote: boolean }) {
-    const draftId = useNewNoteId(!note)
+export default async function NoteView({ note }: { note: Note | null }) {
 
-    if (!note && draftId === null) {
-        return null
-    }
+  if (!note) {
+    note = await createNoteAsync();
+    redirect(`/note/${note.id}`);
+  }
 
-    const activeNote = note ?? createDraftNote(draftId!)
 
-    return (
-        <NoteEditor note={activeNote} isNewNote={isNewNote} />
-    )
+  return (
+    <NoteEditor note={note} />
+  )
 }
 

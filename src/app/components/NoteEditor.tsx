@@ -1,22 +1,15 @@
+"use client"
 import { Note } from "@/generated/prisma/client";
 import { EditParagraph, EditTitle, Meta } from "./ui/text";
-import { useNoteDraft } from "@/hooks/useNoteDraft";
-import { useNoteSync } from "@/hooks/useNoteSync";
 import { formatDate } from "@/lib/date";
+import { useState } from "react";
 
-export default function NoteEditor({ note, isNewNote }: {
+export default function NoteEditor({ note }: {
   note: Note
-  isNewNote: boolean
 }) {
+  const [title, setTitle] = useState(note.title);
+  const [content, setContent] = useState(note.content);
 
-  const {
-    title,
-    content,
-    setTitle,
-    setContent,
-  } = useNoteDraft(note)
-
-  useNoteSync(note, content, isNewNote, title)
 
   return (
     <div className="flex flex-col w-full h-full gap-4">
