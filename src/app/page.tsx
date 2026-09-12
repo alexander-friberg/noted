@@ -1,3 +1,4 @@
+'use server'
 import NoteList from "./components/NoteList";
 import { getUserWithNotes, UserWithNotes } from "@/actions/user-actions";
 import { Title, Meta } from "./components/ui/text";
@@ -8,7 +9,7 @@ import LoginBootstrap from "./components/LoginBootstrap"
 
 export default async function Home() {
   const date = new Date()
-  const user: UserWithNotes = await getUserWithNotes('dev') 
+  const user: UserWithNotes = await getUserWithNotes('dev')
   const cookieStore = await cookies()
   const isLoggedIn = Boolean(cookieStore.get('userId'))
 
@@ -20,7 +21,7 @@ export default async function Home() {
           <Title>NOTED</Title>
           <Meta>{user.name} | {formatDate(date)}</Meta>
         </div>
-        <NoteList userNotes={user.notes} user={user.name}/>
+        <NoteList userNotes={user.notes} user={user.name} />
         <div className="flex flex-col w-full h-fit  items-end ">
           <Menu />
         </div>
