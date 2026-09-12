@@ -1,4 +1,4 @@
 export default function setDefaultTitle() {
   const date = new Date()
-  return `quicknote | ${date.getDate().toLocaleString()}`
+  return `untitled | ${date.toTimeString().split(" ")[0]}`
 }

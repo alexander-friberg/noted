@@ -2,7 +2,8 @@
 import { Note } from "@/generated/prisma/client";
 import { EditParagraph, EditTitle, Meta } from "./ui/text";
 import { formatDate } from "@/lib/date";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useUpdateNote } from "@/hooks/useUpdateNote";
 
 export default function NoteEditor({ note }: {
   note: Note
@@ -10,6 +11,21 @@ export default function NoteEditor({ note }: {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
 
+  const cachedTitle = useRef(note.title);
+  const cachedContent = useRef(note.content);
+
+  useEffect(() => {
+    console.log("hej");
+    const thing = setTimeout(() => {
+      if (!cachedTitle.current || !cachedContent.current || !title || !content) return;
+      cachedTitle.current = title;
+      cachedContent.current = content;
+      useUpdateNote(note.id, title, content);
+      console.log("ran useUpdateNote hook")
+    }, 800);
+
+    return () => clearTimeout(thing);
+  }, [title, content])
 
   return (
     <div className="flex flex-col w-full h-full gap-4">

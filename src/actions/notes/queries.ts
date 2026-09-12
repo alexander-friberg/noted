@@ -11,7 +11,7 @@ export async function getNote(id: number) {
 export async function updateNoteAsync(
   id: number,
   title: string = setDefaultTitle(),
-  content: string = "") {
+  content?: string) {
 
   return await prisma.note.update({
     where: { id },
@@ -24,7 +24,7 @@ export async function updateNoteAsync(
 
 export async function createNoteAsync(
   title: string = setDefaultTitle(),
-  content: string = "") {
+  content?: string) {
   const user = await getCurrentUser()
   return await prisma.note.create({
     data: {

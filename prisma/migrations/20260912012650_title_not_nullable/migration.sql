@@ -1,0 +1,23 @@
+/*
+  Warnings:
+
+  - Made the column `title` on table `Note` required. This step will fail if there are existing NULL values in that column.
+
+*/
+-- RedefineTables
+PRAGMA defer_foreign_keys=ON;
+PRAGMA foreign_keys=OFF;
+CREATE TABLE "new_Note" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "content" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedAt" DATETIME NOT NULL,
+    "authorId" INTEGER NOT NULL,
+    CONSTRAINT "Note_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+INSERT INTO "new_Note" ("authorId", "content", "createdAt", "id", "modifiedAt", "title") SELECT "authorId", "content", "createdAt", "id", "modifiedAt", "title" FROM "Note";
+DROP TABLE "Note";
+ALTER TABLE "new_Note" RENAME TO "Note";
+PRAGMA foreign_keys=ON;
+PRAGMA defer_foreign_keys=OFF;
