@@ -6,7 +6,7 @@ import Link from "next/link";
 export function NoteList({userNotes, user} : {userNotes: Note[]; user: string}) {
 
   return(
-    <div className="flex flex-col items-start py-4 px-1 gap-2 w-full ">
+    <div className="flex flex-col items-start py-4 px-1 gap-2 w-full overflow-y-auto ">
       {userNotes.map((note, i) => (
       <Link href={`note/${note.id}`}
         className="flex w-full h-full"
@@ -22,7 +22,6 @@ export function NoteList({userNotes, user} : {userNotes: Note[]; user: string}) 
       ))}
     </div>
   )
-
 }
 
 export default NoteList
